@@ -1,7 +1,6 @@
 let list = [];
 let cartList = [];
 let id = 1;
-let addCartCount = 1;
 
 let createProduct = () => {
   let name = document.querySelector("#pName").value;
@@ -23,9 +22,9 @@ let createProduct = () => {
       alert("Fill all blank");
     }
   } else {
-    alert("Wrong image type file");
+    alert("Wrong image type file we accept only jpg gif png");
   }
-  // form.reset();
+  form.reset();
   renderItem(list, "#dashboard");
 };
 
@@ -97,4 +96,48 @@ let renderItem = (array, where) => {
   }
   let pay = document.querySelector("#pay");
   pay.innerHTML = "";
+};
+
+let addCartBoard = () => {
+  let cartListID = [];
+  cartList = [];
+  let selectedItem = document.querySelectorAll("#dashboard > div");
+  selectedItem.forEach((item) => {
+    let checkbox = item.querySelector("input").checked;
+    if (checkbox) {
+      cartListID.push(item.id);
+    }
+  });
+
+  for (i = 0; i < cartListID.length; i++) {
+    let filtered = list.find((item) => parseInt(cartListID[i]) == item.id);
+    cartList.push(filtered);
+  }
+  renderItem(cartList, "#cartBoard");
+};
+
+let finalPrice = () => {
+  let result = 0;
+  cartList.forEach((item) => {
+    result += parseFloat(item.price);
+  });
+  let pay = document.querySelector("#pay");
+  pay.innerHTML = `<strong>You have to pay ${result.toFixed(2)}</strong>`;
+};
+
+// let removeFromCart = (id) => {
+//   let depositCartList = [];
+//   depositCartList = cartList;
+//   cartList = [];
+//   let filtered = depositCartList.forEach((item) => {
+//     if (parseInt(id) != item.id) {
+//       cartList.push(item);
+//     }
+//   });
+//   renderItem(cartList, "#cartBoard");
+// };
+
+let removeFromCart = (id) => {
+  cartList = cartList.filter((item) => item.id != parseInt(id));
+  renderItem(cartList, "#cartBoard");
 };
