@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="m-0 p-0 bg-slate-400">
+    <div class="container flex flex-col">
+      <h1 class="font-serif font-bold text-3xl flex justify-center">
+        Shopping Cart
+      </h1>
+      <h2 class="mt-4 font-bold">Add Item for selection</h2>
+    </div>
+    <div>
+      <form action="">
+        <label for="pName">Product Name</label>
+        <input type="text" name="pName" id="pName" />
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" />
+        <label for="image">Image</label>
+        <input type="text" name="image" id="image" />
+        <input
+          type="button"
+          value="Create Product"
+          onclick="createProduct()"
+          class="rounded-md bg-orange-200 p-1"
+        />
+      </form>
+    </div>
+    <div
+      class="w-full h-72 bg-white mt-4 flex flex-col overflow-y-scroll"
+      id="dashboard"
+    ></div>
+    <div>
+      <input
+        type="button"
+        onclick="addCartBoard()"
+        value="Add to Cart"
+        class="rounded-md bg-orange-200 p-1 mt-2"
+      />
+      <div id="cartBoard"></div>
+    </div>
+    <div id="pay"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
